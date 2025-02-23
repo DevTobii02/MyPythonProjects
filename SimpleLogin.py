@@ -1,19 +1,24 @@
-print("Welcome")
-Choice = input("Choose An Option (Login or Sign Up) : " ) .strip() 
-if Choice == "Sign Up": 
-    print("Fill In  Information To The Fields Below")
-    UserName = input("Enter A Valid UserName : ")
-    PassWord = input("Create A Strong/Valid Password : ") 
-    print("Accout Created Succesfully")  
-    print("Please Login In Now !!!")  
-elif Choice == "Login":
-    print("Provide Correct Information To The Following Fields")
-    username = input("Enter Your Username : ") 
-    password = input("Enter Your Password : ") 
-else:
-    print("Wrong Input") 
+print("Welcome") 
 
-if UserName == username and PassWord == password: 
-    print("Logged In Successfully")    
+Choice = input("Enter Your Choice (Login or Sign Up) : ") 
+
+if Choice .strip() .lower() == "Sign Up":
+    print("Fill In The Following Fields To Sign Up")
+    Username = input("Enter A Valid Username : ")
+    Password = input("Provide A Valid Password : ")
+    print("Account Created Successfully")
+    print("Proceed To Login Now !!!")
+elif Choice == "Login":
+    print("Fill In The Following Fields With The Correct Information")  
+    Username1 = input("Enter Your username : ") 
+    Password1 = input("Enter Your password : ")
+if Username == Username1 and Password == Password1:
+    print("Logged In Succesfully")
 else:
-    print("Invalid Username or Password")
+    print("Invalid username or password ")
+
+    
+if Username == Username1 and Password == Password1:
+    print("Logged In Succesfully")
+else:
+    print("Invalid username or password ")
