@@ -33,4 +33,4 @@ for Drink in Drinks:
 for FoodPrice in FoodsPrices:
     print(FoodPrice)
 for DrinkPrice in DrinksPrices:
-    print(DrinkPrice)            
+    print(DrinkPrice) 
