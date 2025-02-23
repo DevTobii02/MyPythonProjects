@@ -7,7 +7,7 @@ HypotenuseSide = OppositeSide * OppositeSide + AdjacentSide * AdjacentSide
 while OppositeSide <= 0:
     OppositeSide = int(input("Enter Value For Opposite Side : "))
     if OppositeSide <= 0:
-        print("Opposite Side Cannot Be Greater  Than Zero")  
+        print("Opposite Side Cannot Be Greater  Than Zero")    
         
 while AdjacentSide <= 0:
     AdjacentSide = int(input("Enter Value For Adjacent Side : ")) 
