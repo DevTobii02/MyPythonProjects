@@ -13,32 +13,6 @@ def Login():
     Login_Password = input("Provide Your Correct Password : ") 
     if Login_Username in users and Login_Password == users[Login_Username]:
         print(f"Login Successfull Welcome Back , {Login_Username}")
-        Activity = input(f"Choose An Activity (Deposit , Withdraw , Send Money , Check Balance , Save Money) : ").strip().lower()
-        if Activity == "Deposit":
-            DepositFunds()
-        elif Activity == "Withdraw":
-            WithdrawFunds()
-        elif Activity == "Send Money":
-            SendMoney()
-        elif Activity == "Check Balance":
-            CheckBalance()
-        elif Activity == "Save Money":
-            SaveMoney()
-        else:
-            print("Invalid Request")
-    else:
-        print("Invalid Username or Password")  
-        
-def DepositFunds():
-    pass
-def WithdrawFunds():
-    pass
-def SendMoney():
-    pass        
-def CheckBalance():
-    pass
-def SaveMoney():
-    pass
 print("Welcome !!! (Sign Up or Login)") 
 Choice = input("Login or Sign Up : ").strip().lower() 
 if Choice == "Sign Up".strip() .lower():
