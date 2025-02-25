@@ -28,16 +28,16 @@ def NewUser():
         try:
             Age = int(input("Enter Your Age : "))
             if Age > 17:
-                    print("Account Created Successfully ")
-                    return Name , Email
+                AccountNumber = GenerateAccountNumber()
+                print(f"Your Account Number is : {AccountNumber}")
+                print("Account Created Successfully ")
+                return Name , Email
             else:
                     print("You Must Be 18 and Above To Open An Account On Your Own")             
                     sys.exit()
         except ValueError:
             print("Invalid Input") 
-            continue                        
-        AccountNumber = GenerateAccountNumber()
-        print(f"Your Account Number is : {AccountNumber}")                                
+            continue                                                     
 def ExsistingUser():
     print("Fill In Your Login Details")
     Username = input("Enter Your Name : ")
@@ -68,6 +68,8 @@ else:
     
 def DepositFunds():
     print("Fill In The Folllowing Transaction Details")
+    InitialBalance = 0
+    AmountToBeDeposited = int(input("Enter Amount To Be Deposited : " ))
     
 def WithdrawFunds():
     pass
