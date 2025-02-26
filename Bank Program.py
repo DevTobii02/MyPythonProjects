@@ -54,7 +54,7 @@ def ExistingUser():
     try:
         AccountNumber = int(input("Enter Your Account Number : "))
     except ValueError:
-        print("Invalid Account Number")
+        print("Invalid Account Number, Series Of Numbers Expected")
         return
     Password = input("Enter Your Password : ") 
     if AccountNumber in users:
@@ -65,8 +65,7 @@ def ExistingUser():
             print("Invalid Password")
     else:
         print("Account Number Does Not Exist")
-        return
-        
+        return None
         
 def DepositFunds():
     pass
@@ -85,4 +84,16 @@ if Choice == "Sign Up".lower().strip():
 elif Choice == "Login".lower().strip():
     ExistingUser()
 else:
-    print("Inavalid Choice")
+    print("Inavalid Choice")  
+   
+Activity = input("What Would You Like To Do : Deposit , Withdraw , Send Money , Check Balance : ").lower().strip()
+if Activity == "Deposit".lower().strip():
+    DepositFunds()
+elif Activity == "Withdraw".lower().strip():
+    WithdrawFunds()
+elif Activity == "Send Money".lower().strip():
+    SendMoney()
+elif Activity == "Check Balance".lower().strip():
+    CheckBalance()
+else:
+    print("Invalid Activity")    
