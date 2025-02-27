@@ -66,11 +66,20 @@ def ExistingUser():
         print("Account Number Does Not Exist")
         return None
        
-        
 def DepositFunds():
-    pass
+    AccountNumber = ExistingUser()
+    if AccountNumber:
+        AmountToBeDeposited = float(input("Enter Amount To Be Deposited : "))
+        if AmountToBeDeposited > 0:
+            users[AccountNumber]['Balance'] += AmountToBeDeposited
+            print(f"Deposit Successful. New Balance: {users[AccountNumber]['Balance']}")
+        else:
+            print("Invalid Amount. Please Enter A Positive Number.")
+    else:
+        print("Deposit Failed. Please Try Again.")
+        
 def WithdrawFunds():
-    pass
+    pass        
 def SendMoney():
     pass
 def CheckBalance():
@@ -86,7 +95,7 @@ elif Choice == "Login".lower().strip():
     ExistingUser()
 else:
     print("Inavalid Choice")  
-   
+
 Activity = input("What Would You Like To Do : Deposit , Withdraw , Send Money , Check Balance : ").lower().strip()
 if Activity == "Deposit".lower().strip():
     DepositFunds()
@@ -97,4 +106,4 @@ elif Activity == "Send Money".lower().strip():
 elif Activity == "Check Balance".lower().strip():
     CheckBalance()
 else:
-    print("Invalid Activity")    
+    print("Invalid Activity")       
