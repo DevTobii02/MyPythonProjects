@@ -7,13 +7,14 @@ def GenerateAccountNumber():
         AccountNumber = random.randint(1000000000, 9999999999)
         if not AccountNumberExists(AccountNumber):
             return AccountNumber 
+        
 def AccountNumberExists(AccountNumber):
     for user in users.values():
         if user['AccountNumber'] == AccountNumber:
             print("Account Number Exists")
             return True
-        print("Account Number Does Not Exist")
-        return False
+    return False
+
 def NewUser():
     while True:
         print("Fill In The Following Fields To Create An Account")
@@ -44,36 +45,31 @@ def NewUser():
                     print("You Must Be 18 and Above To Open An Account On Your Own")             
                     sys.exit()
         except ValueError:
-            print("Invalid Input") 
-            continue                                                     
-def ExsistingUser():
-    print("Fill In Your Login Details")
-    Username = input("Enter Your Name : ")
-    Email1  = input("Enter Your Email : ")
-    password = input("Enter Your Password : ")
-    for AccountNumber, user in users.items():
-        if user['Name'] == Username and user['Email'] == Email1 and user['Password'] == password:
-            print("Login Successfull!!!") 
-            Activity = input(f"Choose An Activity (Deposit , Withdraw , Send Money , Check Balance , Save Money) : ").strip().lower()
-    if Activity == "Deposit".strip().lower():
-        DepositFunds(AccountNumber) 
-    elif Activity == "Withdraw":
-        WithdrawFunds(AccountNumber)
-    elif Activity == "Send Money":
-        SendMoney(AccountNumber)
-    elif Activity == "Check Balance":
-        CheckBalance(AccountNumber)
-    elif Activity == "Save":
-        Save(AccountNumber)
+            print("Invalid Input, Expected An Integer Value") 
+            continue          
+        
+                                                   
+def ExistingUser():
+    print("Fill In The Following Fields To Login")
+    try:
+        AccountNumber = int(input("Enter Your Account Number : "))
+    except ValueError:
+        print("Invalid Account Number")
+        return
+    Password = input("Enter Your Password : ") 
+    if AccountNumber in users:
+        if Password == users[AccountNumber]['Password']:
+            print("Login Successful")
+            return AccountNumber   
+        else:
+            print("Invalid Password")
     else:
-        print("Invalid Operation")
-    return Username, AccountNumber 
-    
-def DepositFunds(AccountNumber):
-    AccountNumber = int(input("Enter Your Account Number : "))
-    Amount = float(input("Enter Amount To Be Deposited : "))  
-    users[AccountNumber]['Balance'] += Amount
-    print(f"The Amount Of {Amount} Has Been Deposited Successfully Into Your Account")
+        print("Account Number Does Not Exist")
+        return
+        
+        
+def DepositFunds():
+    pass
 def WithdrawFunds():
     pass
 def SendMoney():
@@ -85,7 +81,8 @@ def Save():
 Choice = input("Login or Sign Up : ").lower().strip()
 if Choice == "Sign Up".lower().strip():
     NewUser()
-elif Choice == "Login".strip().lower():
-    ExsistingUser()     
+    ExistingUser()
+elif Choice == "Login".lower().strip():
+    ExistingUser()
 else:
-    print("Invalid Option")  
+    print("Inavalid Choice")
