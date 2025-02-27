@@ -47,8 +47,7 @@ def NewUser():
         except ValueError:
             print("Invalid Input, Expected An Integer Value") 
             continue          
-        
-                                                   
+                                                         
 def ExistingUser():
     print("Fill In The Following Fields To Login")
     try:
@@ -66,6 +65,7 @@ def ExistingUser():
     else:
         print("Account Number Does Not Exist")
         return None
+       
         
 def DepositFunds():
     pass
@@ -77,6 +77,7 @@ def CheckBalance():
     pass
 def Save():
     pass 
+
 Choice = input("Login or Sign Up : ").lower().strip()
 if Choice == "Sign Up".lower().strip():
     NewUser()
