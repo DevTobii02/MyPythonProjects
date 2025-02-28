@@ -36,7 +36,7 @@ def NewUser():
                     'Email' : Email,
                     'Password' : Password,
                     'AccountNumber' : AccountNumber,
-                    'Balance' : 0
+                    'Balance' : 0.0
                 }
                 print(f"Your Account Number is : {AccountNumber}")
                 print("Account Created Successfully ")
@@ -54,7 +54,7 @@ def ExistingUser():
         AccountNumber = int(input("Enter Your Account Number : "))
     except ValueError:
         print("Invalid Account Number, Series Of Numbers Expected")
-        return
+        return None
     Password = input("Enter Your Password : ") 
     if AccountNumber in users:
         if Password == users[AccountNumber]['Password']:
@@ -64,46 +64,69 @@ def ExistingUser():
             print("Invalid Password")
     else:
         print("Account Number Does Not Exist")
+        sys.exit()
         return None
        
-def DepositFunds():
-    AccountNumber = ExistingUser()
+def DepositFunds(AccountNumber):
     if AccountNumber:
-        AmountToBeDeposited = float(input("Enter Amount To Be Deposited : "))
+        AmountToBeDeposited = float(input("Enter Amount To Be Deposited  : "))
         if AmountToBeDeposited > 0:
             users[AccountNumber]['Balance'] += AmountToBeDeposited
-            print(f"Deposit Successful. New Balance: {users[AccountNumber]['Balance']}")
+            print(f"Deposit Successful. New Balance: {users[AccountNumber]['Balance']:.3f}")
         else:
             print("Invalid Amount. Please Enter A Positive Number.")
     else:
         print("Deposit Failed. Please Try Again.")
         
-def WithdrawFunds():
-    pass        
-def SendMoney():
-    pass
-def CheckBalance():
-    pass
-def Save():
-    pass 
-
+def WithdrawFunds(AccountNumber):
+    AccountNumber = ExistingUser()
+    if AccountNumber:
+        AmountToBeWithdrawn = float(input("Enter Amount To Be Withdrawn : "))
+        if AmountToBeWithdrawn < 0:
+            print("Amount To Be Withdrawn Must Be Greater Than 0")
+        elif users[AccountNumber]['Balance'] >=  AmountToBeWithdrawn:
+            users[AccountNumber]['Balance'] -= AmountToBeWithdrawn
+            print(f"Withdrawal Successful. New Balance: {users[AccountNumber]['Balance']:.3f}")
+        else:
+            print("Insufficient Funds")
+    else:
+        print("Withdrawal Failed. Please Try Again.")
+        
+def CheckBalance(AccountNumber):
+    if AccountNumber:
+        print(f"Your Account Balance is : {users[AccountNumber]['Balance']:.3f}")
+    else:
+        print("Invalid Account Number")
+def PrintInfo():
+    for UserAccountNumber, User in users.items():
+        print(f"Account Number : {UserAccountNumber}")
+        for key, value in User.items():
+            print(f"{key} : {value}")
+            
 Choice = input("Login or Sign Up : ").lower().strip()
 if Choice == "Sign Up".lower().strip():
-    NewUser()
-    ExistingUser()
+    name, AccountNumber = NewUser()
+    AccountNumber = ExistingUser()
 elif Choice == "Login".lower().strip():
-    ExistingUser()
+   AccountNumber = ExistingUser()
 else:
     print("Inavalid Choice")  
 
-Activity = input("What Would You Like To Do : Deposit , Withdraw , Send Money , Check Balance : ").lower().strip()
-if Activity == "Deposit".lower().strip():
-    DepositFunds()
-elif Activity == "Withdraw".lower().strip():
-    WithdrawFunds()
-elif Activity == "Send Money".lower().strip():
-    SendMoney()
-elif Activity == "Check Balance".lower().strip():
-    CheckBalance()
+if AccountNumber:
+    while True:
+        Activity = input("What Would You Like To Do : Deposit , Withdraw , Send Money , Check Balance , Print Info : ").lower().strip()
+        if Activity == "Deposit".lower().strip():
+            DepositFunds(AccountNumber)
+        elif Activity == "Withdraw".lower().strip():
+            WithdrawFunds(AccountNumber)
+        elif Activity == "Check Balance".lower().strip():
+            CheckBalance(AccountNumber)
+        elif Activity == "Print Info".lower().strip():
+            PrintInfo()
+        elif Activity == "Exit".lower().strip():
+            print("Thank You For Banking With Us")  
+            sys.exit()  
+        else:
+            print("Invalid Activity")  
 else:
-    print("Invalid Activity")       
+    print("Failed Login")  
