@@ -68,7 +68,7 @@ class Bank:
                     AccountNumber = self.GenerateAccountNumber()
                     NewlyGeneratedAccount = Account(Name, Age, Email, Password, AccountNumber, 0.0)
                     self.Customers[AccountNumber] = NewlyGeneratedAccount  
-                    print(f"Your Account Number Is : {NewlyGeneratedAccount}")
+                    print(f"Your Account Number Is : {NewlyGeneratedAccount.AccountNumber}")
                     print("Account Created Successfully")   
                     return NewlyGeneratedAccount
             except ValueError:
@@ -96,7 +96,7 @@ class Bank:
         
     def MenuList(self):
         Choice = input("Login or Signup : ").lower().strip()
-        if Choice == "Sign Up":
+        if Choice == "Sign Up".lower().strip():
            AccountNumber =  self.NewUser()
         elif Choice == "Login":
             AccountNumber = self.ExsistingUser()
@@ -106,7 +106,16 @@ class Bank:
         
         if AccountNumber:
             while True:
-                Activity = input("Deposit, Withdraw, Check Balance, Exit : ").lower().strip()
+                Activity = input("What Activity Do You Want To Carry Out ? (Deposit, Withdraw, Check Balance, Exit) : ").lower().strip()
                 if Activity == "Deposit":
                     Amount = float(input("Enter Amount To Be Deposited :"))
                     self.Customers[AccountNumber].Deposit(Amount)
+                elif Activity == "Withdraw":
+                    Amount = float(input("Enter Amount To Be Withdrawn : "))    
+                    self.Customers[AccountNumber].Withdraw(Amount)
+                elif Activity == "Check Balance":
+                    self.Customers[AccountNumber].CheckBalance()
+                break   
+            
+MyBank = Bank()
+MyBank.MenuList()                  
