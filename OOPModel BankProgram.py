@@ -1,5 +1,9 @@
 import sys
 import random 
+import datetime
+print("Welcome To Our Bank")
+Date = datetime.datetime.now()
+print(Date)
 class Account:
     def __init__(self, Name, Age, Email, Password, AccountNumber, Balance): 
         self.Name = Name
@@ -70,6 +74,7 @@ class Bank:
                     self.Customers[AccountNumber] = NewlyGeneratedAccount  
                     print(f"Your Account Number Is : {NewlyGeneratedAccount.AccountNumber}")
                     print("Account Created Successfully")   
+                    print("You Are Now Logged In")
                     return NewlyGeneratedAccount
             except ValueError:
                 print("Invalid Input, An Integer Value Expected")
@@ -84,7 +89,7 @@ class Bank:
             return None
         Password = input("Enter Your Password : ")
         if AccountNumber in self.Customers:
-            if self.Customers[AccountNumber].password == Password:
+            if self.Customers[AccountNumber].Password == Password:
                 print("Login Successful")
                 return AccountNumber
             else:
@@ -95,27 +100,35 @@ class Bank:
             return None 
         
     def MenuList(self):
-        Choice = input("Login or Signup : ").lower().strip()
+        Choice = input("Login or Sign up : ").lower().strip()
         if Choice == "Sign Up".lower().strip():
            AccountNumber =  self.NewUser()
-        elif Choice == "Login":
+        elif Choice == "Login".lower().strip():
             AccountNumber = self.ExsistingUser()
         else:
             print("Invalid Choice")
             return 
         
         if AccountNumber:
+            account = self.Customers[AccountNumber]
             while True:
-                Activity = input("What Activity Do You Want To Carry Out ? (Deposit, Withdraw, Check Balance, Exit) : ").lower().strip()
-                if Activity == "Deposit":
+                Activity = input("What Activity Do You Want To Carry Out (Deposit, Withdraw, Check Balance, Exit) ? : ").lower().strip()
+                if Activity == "deposit":
                     Amount = float(input("Enter Amount To Be Deposited :"))
-                    self.Customers[AccountNumber].Deposit(Amount)
-                elif Activity == "Withdraw":
+                    account.Deposit(Amount)
+                elif Activity == "withdraw":
                     Amount = float(input("Enter Amount To Be Withdrawn : "))    
-                    self.Customers[AccountNumber].Withdraw(Amount)
-                elif Activity == "Check Balance":
-                    self.Customers[AccountNumber].CheckBalance()
-                break   
+                    account.Withdraw(Amount)
+                elif Activity == "check balance":
+                    account.CheckBalance()
+                elif Activity == "exit":
+                    print("Exiting...")
+                    break
+                else:
+                    print("Invalid Activity")
+        else:
+            print("Invalid Account Number")  
             
+print(Date)
 MyBank = Bank()
 MyBank.MenuList()                  
