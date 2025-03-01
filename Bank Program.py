@@ -1,5 +1,8 @@
 import sys
 import random
+import datetime
+Date = datetime.datetime.now()
+print(Date)
 print("Welcome To My Bank")
 users = {}
 def GenerateAccountNumber():
@@ -77,7 +80,8 @@ def DepositFunds(AccountNumber):
             print("Invalid Amount. Please Enter A Positive Number.")
     else:
         print("Deposit Failed. Please Try Again.")
-        
+    print(Date)    
+    
 def WithdrawFunds(AccountNumber):
     AccountNumber = ExistingUser()
     if AccountNumber:
@@ -91,17 +95,21 @@ def WithdrawFunds(AccountNumber):
             print("Insufficient Funds")
     else:
         print("Withdrawal Failed. Please Try Again.")
+    print(Date)     
         
 def CheckBalance(AccountNumber):
     if AccountNumber:
         print(f"Your Account Balance is : {users[AccountNumber]['Balance']:.3f}")
     else:
         print("Invalid Account Number")
+    print(Date)  
+        
 def PrintInfo():
     for UserAccountNumber, User in users.items():
         print(f"Account Number : {UserAccountNumber}")
         for key, value in User.items():
             print(f"{key} : {value}")
+    print(Date)          
             
 Choice = input("Login or Sign Up : ").lower().strip()
 if Choice == "Sign Up".lower().strip():
@@ -129,4 +137,6 @@ if AccountNumber:
         else:
             print("Invalid Activity")  
 else:
-    print("Failed Login")  
+    print("Failed Login") 
+print(Date)  
+sys.exit()     
