@@ -20,6 +20,7 @@ class Account:
             print("New Balance: ", self.Balance)
         else:
             print("Insufficient Amount")
+        print(f"Deposit Action At {Date}")        
     
     def Withdraw(self, Amount):
         if Amount <= 0:
@@ -33,14 +34,16 @@ class Account:
              
     def CheckBalance(self):
         print(f"Your Current Balance Is: {self.Balance:.2f}")
+        print(Date)
     
     def PrintInfo(self):
         print("Your Account Information")
-        print(f"Account Number: , {self.AccountNumber}")
-        print(f"Name: , {self.Name}")
-        print(f"Age: , {self.Age}")
-        print(f"Email: , {self.Email}")
-        print(f"Balance: , {self.Balance}")
+        print(f"Account Number: {self.AccountNumber}")
+        print(f"Name: {self.Name}")
+        print(f"Age: {self.Age}")
+        print(f"Email: {self.Email}")
+        print(f"Balance: {self.Balance:.2f}")
+        print(Date)
     
 class Bank:
     def __init__(self):
@@ -51,6 +54,7 @@ class Bank:
             AccountNumber = random.randint(1000000000, 9999999999)
             if AccountNumber not in self.Customers:
                 return AccountNumber
+    print(Date)    
     
     def NewUser(self):
         while True:
@@ -75,6 +79,8 @@ class Bank:
                     print(f"Your Account Number Is : {NewlyGeneratedAccount.AccountNumber}")
                     print("Account Created Successfully")   
                     print("You Are Now Logged In")
+                    print(f"Your Account Was Created At {Date}")
+                    print(Date)
                     return NewlyGeneratedAccount
             except ValueError:
                 print("Invalid Input, An Integer Value Expected")
@@ -91,6 +97,7 @@ class Bank:
         if AccountNumber in self.Customers:
             if self.Customers[AccountNumber].Password == Password:
                 print("Login Successful")
+                print(f"Logged In At {Date}")
                 return AccountNumber
             else:
                 print("Invalid Password")
@@ -102,7 +109,11 @@ class Bank:
     def MenuList(self):
         Choice = input("Login or Sign up : ").lower().strip()
         if Choice == "Sign Up".lower().strip():
-           AccountNumber =  self.NewUser()
+           account = self.NewUser()
+           if account:
+            AccountNumber = self.ExsistingUser()
+           else:
+               return
         elif Choice == "Login".lower().strip():
             AccountNumber = self.ExsistingUser()
         else:
@@ -112,7 +123,7 @@ class Bank:
         if AccountNumber:
             account = self.Customers[AccountNumber]
             while True:
-                Activity = input("What Activity Do You Want To Carry Out (Deposit, Withdraw, Check Balance, Exit) ? : ").lower().strip()
+                Activity = input("What Activity Do You Want To Carry Out (Deposit, Withdraw, Check Balance, Print Info,  Exit) ? : ").lower().strip()
                 if Activity == "deposit":
                     Amount = float(input("Enter Amount To Be Deposited :"))
                     account.Deposit(Amount)
@@ -121,14 +132,19 @@ class Bank:
                     account.Withdraw(Amount)
                 elif Activity == "check balance":
                     account.CheckBalance()
+                elif Activity == "print info":
+                    account.PrintInfo() 
                 elif Activity == "exit":
                     print("Exiting...")
+                    print(Date)
                     break
                 else:
                     print("Invalid Activity")
         else:
             print("Invalid Account Number")  
             
-print(Date)
-MyBank = Bank()
-MyBank.MenuList()                  
+                
+                
+if __name__ == "__main__":
+    MyBank = Bank()
+    MyBank.MenuList()
