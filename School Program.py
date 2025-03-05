@@ -29,7 +29,8 @@ def RegisterNewStudent():
         Age = int(input("Enter Your Age : "))
         if Age > 2 and Age > 18:
             print("Does Not Fit Too Age Criteria")
-
+    except:
+        pass
         
 def CheckRegistrationNumber():
     pass
@@ -41,8 +42,16 @@ def RegisteredStudent():
     
 
 def ScienceDepartment():
-    pass
-
+    print("The Following Are The Subjects Available For Science Department")
+    Subjects = ["English Language", "Mathematics", "Physics", "Chemistry", "Biology", "Further Mathematics" ,"Information  Communication Technology"]
+    for Subject in Subjects:
+        print(Subject)  
+    print("The Following Are The Teachers Available For Science Department and Subjects Taught By Them")         
+    Teachers = ["1.Mr.John = Matheatics", "2. Mr.James = English Language", "3.Mr. Peter = Physics", "4.Mr. Paul = Chemistry", "5. Mr.Jude =  Further Mathematics", "6.Mr.Joseph = Inforation Communication Technology", "Mr. Emmanuel"]        
+    for Teacher in Teachers:
+        print(Teacher)  
+        
+        
 def ArtsDepartment():
     pass
 
@@ -56,6 +65,7 @@ def PrintStudentDetails():
         print(f"Email : {Students[GenerateRegistrationNumber]['Email']}")
         print(f"Registration Number : {Students[GenerateRegistrationNumber]['RegistrationNumber']}")
         print(f"Department : {Students[GenerateRegistrationNumber]['Department']}")
+        print(f"Your Subjects Are : {Students[GenerateRegistrationNumber]['Subjects']}")
         print(f"Date Of Registration : {Students[GenerateRegistrationNumber]['DateOfRegistration']}")
     else:
         print("Student Does Not Exist")  
