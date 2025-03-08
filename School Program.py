@@ -45,12 +45,16 @@ def RegisteredStudent():
     
 
 def ScienceDepartment():
-    print("The Following Are The Subjects Available For Science Department")
-    Subjects = ["English Language", "Mathematics", "Physics", "Chemistry", "Biology", "Further Mathematics" ,"Information  Communication Technology"]
-    print("The Following Are The Teachers Available For Science Department and Subjects Taught By Them")         
-    Teachers = ["1.Mr.John = Matheatics", "2. Mr.James = English Language", "3.Mr. Peter = Physics", "4.Mr. Paul = Chemistry", "5. Mr.Jude =  Further Mathematics", "6.Mr.Joseph = Inforation Communication Technology", "Mr. Emmanuel"]         
-    #AskQuestion = input("What Do You Want T")        
-        
+    Subjects = ["English Language", "Mathematics", "Physics", "Chemistry", "Biology", "Further Mathematics" ,"Information  Communication Technology",  "Data Processing"]        
+    Teachers = ["1.Mr.John = Mathematics", "2. Mr.James = English Language", "3.Mr. Peter = Physics", "4.Mr. Paul = Chemistry", "5. Mr.Jude =  Further Mathematics", "6.Mr.Joseph = Inforation Communication Technology", "7. Mr. Emmanuel = Data Processing"]         
+    AskQuestion = input("What Do You Want To Get (Subjects or Teachers ) ? : ")    
+    if AskQuestion.lower().strip() == "teachers":
+        for teacher in Teachers:
+            print(teacher) 
+    elif AskQuestion.lower().strip() == "subjects":
+        for subject in Subjects:
+            print(subject)        
+            
 def ArtsDepartment():
     pass
 
