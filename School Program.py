@@ -7,30 +7,28 @@ Date = datetime.datetime.now()
 print(Date)
  
   
-def GenerateRegistrationNumber():
+def GenerateRegistrationNumber(Department):  #Generates Registration Number Based On Department
     if ChooseDepartment == "Science":
         RegistrationNumber = random.randint(1000, 1999)
     elif ChooseDepartment == "Arts":
         RegistrationNumber = random.randint(2000, 2999)
     elif ChooseDepartment == "Commercial":
-        RegistrationNumber = random.randint(3000, 4000) 
+        RegistrationNumber = random.randint(3000, 3999) 
     else:
         print("Invalid Department")
         return None
     return RegistrationNumber  
 
-
 def RegisterNewStudent():
     print("New Student Registration")
     Name = input("Enter Your Name : ")
-    Age = 0
     Email = input("Enter Your Email : ")
-    try:
-        Age = int(input("Enter Your Age : "))
-        if Age > 2 and Age > 18:
-            print("Does Not Fit Too Age Criteria")
-    except:
-        pass
+    Age = int(input("Enter Your Age : "))
+    if Age > 2 and Age > 18:
+        print("Does Not Fit Too Age Criteria")        
+Departemnt = input("Enter Your Department : ").strip().lower()
+RegistrationNumber = GenerateRegistrationNumber
+print(RegistrationNumber)
         
 def CheckRegistrationNumber():
     pass
