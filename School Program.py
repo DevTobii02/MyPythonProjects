@@ -45,19 +45,31 @@ def RegisteredStudent():
     
 
 def ScienceDepartment():
-    Subjects = ["English Language", "Mathematics", "Physics", "Chemistry", "Biology", "Further Mathematics" ,"Information  Communication Technology",  "Data Processing"]        
-    Teachers = ["1.Mr.John = Mathematics", "2. Mr.James = English Language", "3.Mr. Peter = Physics", "4.Mr. Paul = Chemistry", "5. Mr.Jude =  Further Mathematics", "6.Mr.Joseph = Inforation Communication Technology", "7. Mr. Emmanuel = Data Processing"]         
-    AskQuestion = input("What Do You Want To Get (Subjects or Teachers ) ? : ")    
-    if AskQuestion.lower().strip() == "teachers":
+    Subjects = ["English Language", "Mathematics", "Physics", "Chemistry", "Biology", "Further Mathematics" ,"Information  Communication Technology",  "Data Processing", "Geography", "Economics"]        
+    Teachers = ["1.Mr.John = Mathematics", "2. Mr.James = English Language", "3.Mr. Peter = Physics", "4.Mr. Paul = Chemistry", "5. Mr.Jude =  Further Mathematics", "6.Mr.Joseph = Inforation Communication Technology", "7. Mr. Emmanuel = Data Processing", "8. Mr World = Geography", "9.Mr Kingsley = Economics"]         
+    TeachersorSubjects = input("What Do You Want To Get (Subjects or Teachers ) ? : ")    
+    if TeachersorSubjects.lower().strip() == "teachers":
         for teacher in Teachers:
             print(teacher) 
-    elif AskQuestion.lower().strip() == "subjects":
+    elif TeachersorSubjects.lower().strip() == "subjects":
         for subject in Subjects:
-            print(subject)        
+            print(subject)      
+    else:
+        print("Invalid Input")             
             
 def ArtsDepartment():
-    pass
-
+    Subjects = ["Engish Language", "Mathematics", "Literature In English", "Government", "Islamic Religious Studies", "Christian Religious Studies", "Civic Education",  "History", "Visual Arts", "Music", "French", "Yoruba", "Igbo", "Hausa"]
+    Teachers = ["1. Mr. Remi = English Language", "2. Mr Bright = Mathematics", "3. Mrs. Funmi = Literature In English", "4. Mr. John = Government", "5. Mr. Ibrahim  = Islamic Religious Studies", "6. Mr. Paul = Christian Religious Studies", "7. Mr. Jude = Civic Education", "8. Mrs. Grace = History", "9. Mr. Emmanuel = Visual Arts", "10. Mrs. Rose = Music", "11. Mr. Joseph = French", "12. Mrs. Funke = Yoruba", "13. Mrs. Ngozi = Igbo", "14. Mrs. Amina = Hausa"]
+    TeachersorSubjects = input("What Do You Want To Get (Subjects or Teachers) ? : ") 
+    if TeachersorSubjects.lower().strip() == "teachers":
+        for teacher in Teachers:
+            print(teacher)  
+    elif TeachersorSubjects.lower().strip() == "subjects":
+        for subject in Subjects:
+            print(subject)
+    else:
+        print("Invalid Input")  
+        
 def CommercialDepartment():
     pass
 
@@ -85,7 +97,7 @@ else:
 ChooseDepartment = input("Enter Choose Your Department : ").strip() .lower()
 if ChooseDepartment == "Science".lower().strip():
     ScienceDepartment()
-elif ChooseDepartment == "Arts":
+elif ChooseDepartment == "Arts".lower().strip():
     ArtsDepartment()
 elif ChooseDepartment == "Commercial":
     CommercialDepartment()        
