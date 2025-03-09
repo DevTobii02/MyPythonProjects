@@ -71,8 +71,16 @@ def ArtsDepartment():
         print("Invalid Input")  
         
 def CommercialDepartment():
-    pass
-
+    Subjects = ["English Language", "Mathematics", "Economics" "Financial Accounting", "Commerece", "Economics", "Further Mathematics", "Book Keeping"]
+    Teachers = ["1.Mrs Anna = English Language"]
+    TeachersorSubjects = input("What Do To Get (Subjects or Teachers) ? :") 
+    if TeachersorSubjects:
+        for teacher in Teachers:
+            print(teacher) 
+    elif TeachersorSubjects:
+        for subject in Subjects:
+            print(subject)        
+    
 def PrintStudentDetails():
     if GenerateRegistrationNumber in Students:
         print(f"Name : {Students[GenerateRegistrationNumber]['Name']}")
@@ -90,6 +98,8 @@ if Choice == "New".lower().strip():
     RegisterNewStudent()
 elif Choice == "Returning Student".lower().strip():
     RegisteredStudent()
+elif Choice == "Print Info".lower().strip():
+    PrintStudentDetails()
 else:
     print("Invalid Input")    
            
@@ -107,13 +117,4 @@ else:
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
