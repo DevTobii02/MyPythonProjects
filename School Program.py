@@ -32,13 +32,23 @@ def RegisterNewStudent():
     if RegistrationNumber is None:
         print("Failed To Generate Registration Number") 
         return #Use to exit the function early if conditions are not met  
+    if ChooseDepartment == "Science":
+        Subjects = ["1.English Language", "2.Mathematics", "3.Physics", "3.Chemistry", "4.Biology", "5.Further Mathematics", "6.Information Communication Technology", "7.Data Processing", "8.Geography", "9.Economics"]
+    elif ChooseDepartment == "Arts":
+        Subjects = ["1.English Language", "2.Mathematics", "3.Literature In English", "4.Government", "5.Islamic Religious Studies", "6.Christian Religious Studies", "7.Civic Education", "8.History", "9.Visual Arts", "10.Music", "11.French", "12.Yoruba", "13.Igbo", "14.Hausa"]
+    elif ChooseDepartment == "Commercial":
+        Subjects = ["1.English Language", "2.Mathematics", "3.Economics", "4.Financial Accounting", "5.Commerce", "6.Further Mathematics", "7.Book Keeping", "8.Data Processing"]
+    else:
+        Subjects = []
+
     Students[Email] = {
         "Name" : Name,
         "Email" : Email,
         "Age" : Age,
         "ChooseDepartment" : ChooseDepartment,
         "RegistrationNumber" : RegistrationNumber,
-        "DateOfRegistration" : datetime.datetime.now()
+        "DateOfRegistration" : datetime.datetime.now(),
+        "Subjects" : Subjects
     }
     print("New Student Registered Successfully")
     print(f"Your Registration Number Is : {RegistrationNumber}")
@@ -86,12 +96,15 @@ def CommercialDepartment():
     Subjects = ["English Language", "Mathematics", "Economics" "Financial Accounting", "Commerece", "Economics", "Further Mathematics", "Book Keeping", "Data Processing"]
     Teachers = ["1.Mrs Anna = English Language", "2. Mr Benard = Mathematics", "3. Mr Kingsley = Economics", "4. Mr. Paul = Financial Accounting", "5. Mr. Jude = Commerece", "6. Mr. Joseph = Further Mathematics", "7. Mr. Emmanuel = Book Keeping", "8. Mr Mathew = Data Processing"]
     TeachersorSubjects = input("What Do To Get (Subjects or Teachers) ? :") 
-    if TeachersorSubjects:
+    if TeachersorSubjects.lower().strip() == "teachers":
         for teacher in Teachers:
-            print(teacher) 
-    elif TeachersorSubjects:
+                print(teacher)
+    elif TeachersorSubjects.lower().strip() == "subjects":
         for subject in Subjects:
-            print(subject)        
+            print(subject)
+    else:
+        print("Invalid Input")
+              
     
 def PrintStudentDetails():
     Email = input("Enter Your Email : ")
@@ -102,12 +115,13 @@ def PrintStudentDetails():
         print(f"Email : {student['Email']}")
         print(f"Registration Number : {student['RegistrationNumber']}")
         print(f"Department : {student['ChooseDepartment']}")
-        print(f"Your Subjects Are : {student['Subjects']}")
+        print(f"Your Subjects Are : ")
+        for subject in student['Subjects']:
+            print(f"- {subject}")
         print(f"Date Of Registration : {student['DateOfRegistration']}")
     else:
         print("Student Does Not Exist")  
-                   
-        
+                                
 if __name__ == "__main__":
     while True:
         Choice = input("New or Returning Students or print info : ").lower().strip()
@@ -134,4 +148,3 @@ if __name__ == "__main__":
         if continue_program != "yes":
             break
                 
-                                
