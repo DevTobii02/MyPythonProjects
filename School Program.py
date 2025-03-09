@@ -20,8 +20,8 @@ def GenerateRegistrationNumber(ChooseDepartment):  #Generates Registration Numbe
     return RegistrationNumber  
 
 def RegisterNewStudent():
-    print("New Student Registration")
-    Name = input("Enter Your Name : ")
+    print("New Student Registration, Fill in the following")
+    Name = input("Enter  Your Name : ")
     Email = input("Enter Your Email : ")
     Age = int(input("Enter Your Age : "))
     if Age < 2 or Age > 18:
@@ -29,10 +29,19 @@ def RegisterNewStudent():
         return  #Use to exit the function early if conditions are not met  
     ChooseDepartment = input("Enter Your Department : ").strip().capitalize()
     RegistrationNumber = GenerateRegistrationNumber(ChooseDepartment)
-    print(RegistrationNumber) 
-    print("New Student Successfully Registered")
     if RegistrationNumber is None:
         print("Failed To Generate Registration Number") 
+        return #Use to exit the function early if conditions are not met  
+    Students[Email] = {
+        "Name" : Name,
+        "Email" : Email,
+        "Age" : Age,
+        "ChooseDepartment" : ChooseDepartment,
+        "RegistrationNumber" : RegistrationNumber,
+        "DateOfRegistration" : datetime.datetime.now()
+    }
+    print("New Student Registered Successfully")
+    print(f"Your Registration Number Is : {RegistrationNumber}")
         
 def CheckRegistrationNumber():
     if GenerateRegistrationNumber in Students:
@@ -42,7 +51,10 @@ def RegisteredStudent():
     print("Fill The Following Fields With Your Correct Details")
     Name = input("Enter Your Name : ")
     Email = input("Enter Your Email : ")
-    
+    if GenerateRegistrationNumber in Students:
+        print("Student Already Exists")
+    else:
+        print("Student Does Not Exist")
 
 def ScienceDepartment():
     Subjects = ["English Language", "Mathematics", "Physics", "Chemistry", "Biology", "Further Mathematics" ,"Information  Communication Technology",  "Data Processing", "Geography", "Economics"]        
@@ -71,8 +83,8 @@ def ArtsDepartment():
         print("Invalid Input")  
         
 def CommercialDepartment():
-    Subjects = ["English Language", "Mathematics", "Economics" "Financial Accounting", "Commerece", "Economics", "Further Mathematics", "Book Keeping"]
-    Teachers = ["1.Mrs Anna = English Language"]
+    Subjects = ["English Language", "Mathematics", "Economics" "Financial Accounting", "Commerece", "Economics", "Further Mathematics", "Book Keeping", "Data Processing"]
+    Teachers = ["1.Mrs Anna = English Language", "2. Mr Benard = Mathematics", "3. Mr Kingsley = Economics", "4. Mr. Paul = Financial Accounting", "5. Mr. Jude = Commerece", "6. Mr. Joseph = Further Mathematics", "7. Mr. Emmanuel = Book Keeping", "8. Mr Mathew = Data Processing"]
     TeachersorSubjects = input("What Do To Get (Subjects or Teachers) ? :") 
     if TeachersorSubjects:
         for teacher in Teachers:
@@ -82,39 +94,44 @@ def CommercialDepartment():
             print(subject)        
     
 def PrintStudentDetails():
-    if GenerateRegistrationNumber in Students:
-        print(f"Name : {Students[GenerateRegistrationNumber]['Name']}")
-        print(f"Age : {Students[GenerateRegistrationNumber]['Age']}")
-        print(f"Email : {Students[GenerateRegistrationNumber]['Email']}")
-        print(f"Registration Number : {Students[GenerateRegistrationNumber]['RegistrationNumber']}")
-        print(f"Department : {Students[GenerateRegistrationNumber]['ChooseDepartment']}")
-        print(f"Your Subjects Are : {Students[GenerateRegistrationNumber]['Subjects']}")
-        print(f"Date Of Registration : {Students[GenerateRegistrationNumber]['DateOfRegistration']}")
+    Email = input("Enter Your Email : ")
+    if Email in Students:
+        student = Students[Email]
+        print(f"Name : {student['Name']}")
+        print(f"Age : {student['Age']}")
+        print(f"Email : {student['Email']}")
+        print(f"Registration Number : {student['RegistrationNumber']}")
+        print(f"Department : {student['ChooseDepartment']}")
+        print(f"Your Subjects Are : {student['Subjects']}")
+        print(f"Date Of Registration : {student['DateOfRegistration']}")
     else:
         print("Student Does Not Exist")  
-               
-Choice = input("New or Returning Students : ").lower().strip()
-if Choice == "New".lower().strip():
-    RegisterNewStudent()
-elif Choice == "Returning Student".lower().strip():
-    RegisteredStudent()
-elif Choice == "Print Info".lower().strip():
-    PrintStudentDetails()
-else:
-    print("Invalid Input")    
-           
+                   
+        
+if __name__ == "__main__":
+    while True:
+        Choice = input("New or Returning Students or print info : ").lower().strip()
+        if Choice == "new":
+            RegisterNewStudent()
+        elif Choice == "returning student":
+            RegisteredStudent()
+        elif Choice == "print info":
+            PrintStudentDetails()
+        else:
+                print("Invalid Input")
 
-ChooseDepartment = input("Enter Choose Your Department : ").strip() .lower()
-if ChooseDepartment == "Science".lower().strip():
-    ScienceDepartment()
-elif ChooseDepartment == "Arts".lower().strip():
-    ArtsDepartment()
-elif ChooseDepartment == "Commercial":
-    CommercialDepartment()        
-else:
-    print("Not A Department")    
-    
-    
-    
-    
-  
+        ChooseDepartment = input("Enter Choose Your Department : ").strip().lower()
+        if ChooseDepartment == "science":
+            ScienceDepartment()
+        elif ChooseDepartment == "arts":
+            ArtsDepartment()
+        elif ChooseDepartment == "commercial":
+            CommercialDepartment()
+        else:
+            print("Not A Department")
+
+        continue_program = input("Do you want to continue? (yes/no): ").strip().lower()
+        if continue_program != "yes":
+            break
+                
+                                
