@@ -4,9 +4,9 @@ import sys
 
 Students = {}  #Initializes A Dictionary To Keep Trcak Pf Student Data 
 Date = datetime.datetime.now()
+print("Welcome My School")
 print(Date)
  
-  
 def GenerateRegistrationNumber(ChooseDepartment):  #Generates Registration Number Based On Department
     if ChooseDepartment == "Science":
         RegistrationNumber = random.randint(1000, 1999)
@@ -25,7 +25,8 @@ def RegisterNewStudent():
     Email = input("Enter Your Email : ")
     Age = int(input("Enter Your Age : "))
     if Age < 2 or Age > 18:
-        print("Does Not Fit Too Age Criteria")   
+        print("Does Not Fit Too Age Criteria") 
+        sys.exit()  
         return  #Use to exit the function early if conditions are not met  
     ChooseDepartment = input("Enter Your Department : ").strip().capitalize()
     RegistrationNumber = GenerateRegistrationNumber(ChooseDepartment)
@@ -54,20 +55,23 @@ def RegisterNewStudent():
     print(f"Your Registration Number Is : {RegistrationNumber}")
         
 def CheckRegistrationNumber():
-    if GenerateRegistrationNumber in Students:
+    Email = input("Enter Your Email : ")
+    if Email  in Students:
         print("Student Already Exists")
+    else:
+        print("No Record Of Student With This Email")
 
 def RegisteredStudent(): 
     print("Fill The Following Fields With Your Correct Details")
     Name = input("Enter Your Name : ")
     Email = input("Enter Your Email : ")
-    if GenerateRegistrationNumber in Students:
+    if Email in Students:
         print("Student Already Exists")
     else:
         print("Student Does Not Exist")
 
 def ScienceDepartment():
-    Subjects = ["English Language", "Mathematics", "Physics", "Chemistry", "Biology", "Further Mathematics" ,"Information  Communication Technology",  "Data Processing", "Geography", "Economics"]        
+    Subjects = ["1.English Language", "2.Mathematics", "3.Physics", "4.Chemistry", "5.Biology", "6.Further Mathematics" ,"7.Information  Communication Technology",  "8.Data Processing", "9.Geography", "10.Economics"]        
     Teachers = ["1.Mr.John = Mathematics", "2. Mr.James = English Language", "3.Mr. Peter = Physics", "4.Mr. Paul = Chemistry", "5. Mr.Jude =  Further Mathematics", "6.Mr.Joseph = Inforation Communication Technology", "7. Mr. Emmanuel = Data Processing", "8. Mr World = Geography", "9.Mr Kingsley = Economics"]         
     TeachersorSubjects = input("What Do You Want To Get (Subjects or Teachers ) ? : ")    
     if TeachersorSubjects.lower().strip() == "teachers":
@@ -80,7 +84,7 @@ def ScienceDepartment():
         print("Invalid Input")             
             
 def ArtsDepartment():
-    Subjects = ["Engish Language", "Mathematics", "Literature In English", "Government", "Islamic Religious Studies", "Christian Religious Studies", "Civic Education",  "History", "Visual Arts", "Music", "French", "Yoruba", "Igbo", "Hausa"]
+    Subjects = ["1.Engish Language", "2.Mathematics", "3.Literature In English", "4.Government", "5.Islamic Religious Studies", "6.Christian Religious Studies", "7.Civic Education",  "8.History", "9.Visual Arts", "10.Music", "11.French", "12.Yoruba", "13.Igbo", "14.Hausa"]
     Teachers = ["1. Mr. Remi = English Language", "2. Mr Bright = Mathematics", "3. Mrs. Funmi = Literature In English", "4. Mr. John = Government", "5. Mr. Ibrahim  = Islamic Religious Studies", "6. Mr. Paul = Christian Religious Studies", "7. Mr. Jude = Civic Education", "8. Mrs. Grace = History", "9. Mr. Emmanuel = Visual Arts", "10. Mrs. Rose = Music", "11. Mr. Joseph = French", "12. Mrs. Funke = Yoruba", "13. Mrs. Ngozi = Igbo", "14. Mrs. Amina = Hausa"]
     TeachersorSubjects = input("What Do You Want To Get (Subjects or Teachers) ? : ") 
     if TeachersorSubjects.lower().strip() == "teachers":
@@ -91,9 +95,10 @@ def ArtsDepartment():
             print(subject)
     else:
         print("Invalid Input")  
+     
         
 def CommercialDepartment():
-    Subjects = ["English Language", "Mathematics", "Economics" "Financial Accounting", "Commerece", "Economics", "Further Mathematics", "Book Keeping", "Data Processing"]
+    Subjects = ["1.English Language", "2.Mathematics", "3.Economics" "4.Financial Accounting", "5.Commerece", "6.Economics", "7.Further Mathematics", "8.Book Keeping", "9.Data Processing"]
     Teachers = ["1.Mrs Anna = English Language", "2. Mr Benard = Mathematics", "3. Mr Kingsley = Economics", "4. Mr. Paul = Financial Accounting", "5. Mr. Jude = Commerece", "6. Mr. Joseph = Further Mathematics", "7. Mr. Emmanuel = Book Keeping", "8. Mr Mathew = Data Processing"]
     TeachersorSubjects = input("What Do To Get (Subjects or Teachers) ? :") 
     if TeachersorSubjects.lower().strip() == "teachers":
@@ -121,7 +126,8 @@ def PrintStudentDetails():
         print(f"Date Of Registration : {student['DateOfRegistration']}")
     else:
         print("Student Does Not Exist")  
-                                
+
+                             
 if __name__ == "__main__":
     while True:
         Choice = input("New or Returning Students or print info : ").lower().strip()
@@ -130,9 +136,12 @@ if __name__ == "__main__":
         elif Choice == "returning student":
             RegisteredStudent()
         elif Choice == "print info":
-            PrintStudentDetails()
-        else:
-                print("Invalid Input")
+            PrintStudentDetails() 
+        elif Choice == "check registration number":
+            CheckRegistrationNumber() 
+        elif Choice == "exit":
+                print("Exiting The Program")
+                sys.exit()
 
         ChooseDepartment = input("Enter Choose Your Department : ").strip().lower()
         if ChooseDepartment == "science":
