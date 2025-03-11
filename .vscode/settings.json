@@ -1,0 +1,22 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "Bank.db",
+            "name": "MyFirstConnection",
+            "group": "FirstSet"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "FirstSet",
+            "username": "postgres",
+            "database": "FirstPostgre",
+            "password": "PostgreAdebayo"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
